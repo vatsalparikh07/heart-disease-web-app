@@ -13,7 +13,7 @@ with st.sidebar:
     selected = option_menu('Heart Disease Prediction System',
                           
                           [
-                           'Predict Now!'
+                           'Heart Disease Prediction'
                            ],
                           icons=['heart'],
                           default_index=0)
