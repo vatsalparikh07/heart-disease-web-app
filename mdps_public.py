@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -16,7 +13,7 @@ with st.sidebar:
     selected = option_menu('Heart Disease Prediction System',
                           
                           [
-                           'Heart Disease Prediction'
+                           'Predict Now!'
                            ],
                           icons=['heart'],
                           default_index=0)
