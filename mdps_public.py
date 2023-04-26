@@ -29,7 +29,7 @@ if (selected == 'Heart Disease Prediction'):
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        age = st.text_input('Age')
+        age = st.slider('Age', 1, 100, 25)
         
     with col2:
         sex = st.text_input('Sex')
