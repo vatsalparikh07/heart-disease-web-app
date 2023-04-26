@@ -63,7 +63,7 @@ elif (selected == 'Heart Disease Prediction'):
         cp = st.selectbox('Chest Pain type', options=cp_options)
         cp = 0 if cp == 'Typical Angina' else (1 if cp == 'Atypical Angina' else (2 if cp == 'Non-Anginal Pain' else 3))
 
-        chol = st.text_input('Serum Cholesterol in mg/dl')
+        chol = st.text_input('Serum Cholesterol in mg/dl', value = 200)
         
         oldpeak = st.number_input('ST depression induced by exercise', value=0.0, step=0.1)
 
