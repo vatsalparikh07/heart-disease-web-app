@@ -37,9 +37,7 @@ if (selected == 'Heart Disease Prediction'):
         sex = 0 if sex == 'Female' else 1
         
     with col3:
-        cp = st.selectbox('Chest Pain type',
-                      options=[0, 1, 2, 3],
-                      labels=['Typical angina', 'Atypical angina', 'Non-anginal pain', 'Asymptomatic'])
+        cp = st.text_input('Chest Pain')
         
     with col1:
         trestbps = st.text_input('Resting Blood Pressure')
