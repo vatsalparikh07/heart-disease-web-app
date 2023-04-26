@@ -32,7 +32,9 @@ if (selected == 'Heart Disease Prediction'):
         age = st.slider('Age', 1, 100, 25)
         
     with col2:
-        sex = st.text_input('Sex')
+        sex_options = ['Male', 'Female']
+        sex = st.selectbox('Sex', options=sex_options)
+        sex = 0 if sex == 'Female' else 1
         
     with col3:
         cp = st.text_input('Chest Pain types')
