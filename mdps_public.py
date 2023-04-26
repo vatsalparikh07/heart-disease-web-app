@@ -57,13 +57,15 @@ elif (selected == 'Heart Disease Prediction'):
     
     with col1:
 
+        age = st.slider('Age', 1, 100, 25)
+
         cp_options = ['Typical Angina', 'Atypical Angina', 'Non-Anginal Pain', 'Asymptomatic']
         cp = st.selectbox('Chest Pain type', options=cp_options)
         cp = 0 if cp == 'Typical Angina' else (1 if cp == 'Atypical Angina' else (2 if cp == 'Non-Anginal Pain' else 3))
 
-        trtbps = st.slider('Resting Blood Pressure', 80, 200, 120)
-
-        thalachh = st.slider('Maximum Heart Rate achieved', min_value=60, max_value=220, value=120)
+        sex_options = ['Male', 'Female']
+        sex = st.selectbox('Sex', options=sex_options)
+        sex = 0 if sex == 'Female' else 1
 
         oldpeak = st.number_input('ST depression induced by exercise', value=0.0, step=0.1)
 
@@ -74,10 +76,8 @@ elif (selected == 'Heart Disease Prediction'):
         
     with col2:
 
-        sex_options = ['Male', 'Female']
-        sex = st.selectbox('Sex', options=sex_options)
-        sex = 0 if sex == 'Female' else 1
-
+        trtbps = st.slider('Resting Blood Pressure', 80, 200, 120)
+        
         chol = st.text_input('Serum Cholesterol in mg/dl')
 
         restecg_options = [0, 1, 2]
@@ -89,8 +89,8 @@ elif (selected == 'Heart Disease Prediction'):
     
     with col3:
 
-        age = st.slider('Age', 1, 100, 25)
-
+        thalachh = st.slider('Maximum Heart Rate achieved', min_value=60, max_value=220, value=120)
+        
         fbs_options = ['False', 'True']
         fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', options=fbs_options)
         fbs = 0 if fbs == '< 120' else 1
