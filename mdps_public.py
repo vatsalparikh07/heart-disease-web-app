@@ -100,7 +100,7 @@ elif (selected == 'Heart Disease Prediction'):
         exng = 0 if exng == 'No' else 1
     
         caa_options = ['0', '1', '2', '3', '4']
-        caa = st.selectbox('Number of Major Vessels Colored by Fluoroscopy', options=caa_options)
+        caa = st.selectbox('Major Vessels Colored by Fluoroscopy', options=caa_options)
 
         
     # code for Prediction
