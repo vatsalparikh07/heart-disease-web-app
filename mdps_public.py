@@ -10,7 +10,7 @@ heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
 # sidebar for navigation
 with st.sidebar:
     selected = option_menu('Main Menu',
-                          ['About the Project', 'Heart Disease Prediction',  'Attributes Description', 'Analysis and Visualization', 'Findings and Outcomes'],
+                          ['About the Project', 'Heart Disease Prediction',  'Attribute Description', 'Analysis and Visualization', 'Findings and Outcomes'],
                           icons=['heart'],
                           default_index=0)
 
@@ -100,7 +100,7 @@ elif (selected == 'Heart Disease Prediction'):
         exng = 0 if exng == 'No' else 1
     
         caa_options = ['0', '1', '2', '3', '4']
-        caa = st.selectbox('Major Vessels Colored by Fluoroscopy', options=caa_options)
+        caa = st.selectbox('Number of Major Vessels Colored by Fluoroscopy', options=caa_options)
 
         
     # code for Prediction
@@ -119,11 +119,31 @@ elif (selected == 'Heart Disease Prediction'):
 
     st.success(heart_diagnosis)
 
-elif (selected == 'Attributes Description'):
-    st.set_page_config(page_title="Attributes of Heart Disease Prediction", page_icon=":heart:")
+elif (selected == 'Attribute Description'):
 
-    # Define page header
-    st.markdown("# Attributes of Heart Disease Prediction")
+    def attribute_description():
+        st.markdown("# Attribute Description")
+        st.markdown("The following are the attributes used in the heart disease dataset:")
+    
+        st.markdown("1. **age**: The person's age in years.")
+        st.markdown("2. **sex**: The person's gender (1 = male, 0 = female).")
+        st.markdown("3. **cp**: Chest pain type (0 = typical angina, 1 = atypical angina, 2 = non-anginal pain, 3 = asymptomatic).")
+        st.markdown("4. **trestbps**: Resting blood pressure (mm Hg) when the person was admitted to the hospital.")
+        st.markdown("5. **chol**: Serum cholesterol (mg/dl) level.")
+        st.markdown("6. **fbs**: Fasting blood sugar > 120 mg/dl (1 = true, 0 = false).")
+        st.markdown("7. **restecg**: Resting electrocardiographic results (0 = normal, 1 = having ST-T wave abnormality, 2 = showing probable or definite left ventricular hypertrophy).")
+        st.markdown("8. **thalach**: Maximum heart rate achieved during the exercise test.")
+        st.markdown("9. **exang**: Exercise induced angina (1 = yes, 0 = no).")
+        st.markdown("10. **oldpeak**: ST depression induced by exercise relative to rest ('ST' relates to positions on the ECG plot.)")
+        st.markdown("11. **slope**: The slope of the peak exercise ST segment (0 = upsloping, 1 = flat, 2 = downsloping).")
+        st.markdown("12. **ca**: The number of major vessels (0-4).")
+        st.markdown("13. **thal**: A blood disorder called thalassemia (1 = normal; 2 = fixed defect; 3 = reversable defect).")
+
+    attribute_description()
+
+elif (selected == 'Analysis and Visualization'):
+
+    st.title('Data Visualization')
 
 
 
