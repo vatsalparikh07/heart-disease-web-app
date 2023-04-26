@@ -57,7 +57,9 @@ elif (selected == 'Heart Disease Prediction'):
     
     with col1:
 
-        age = st.slider('Age', 1, 100, 25)
+        cp_options = ['Typical Angina', 'Atypical Angina', 'Non-Anginal Pain', 'Asymptomatic']
+        cp = st.selectbox('Chest Pain type', options=cp_options)
+        cp = 0 if cp == 'Typical Angina' else (1 if cp == 'Atypical Angina' else (2 if cp == 'Non-Anginal Pain' else 3))
 
         trtbps = st.slider('Resting Blood Pressure', 80, 200, 120)
 
@@ -87,9 +89,7 @@ elif (selected == 'Heart Disease Prediction'):
     
     with col3:
 
-        cp_options = ['Typical Angina', 'Atypical Angina', 'Non-Anginal Pain', 'Asymptomatic']
-        cp = st.selectbox('Chest Pain type', options=cp_options)
-        cp = 0 if cp == 'Typical Angina' else (1 if cp == 'Atypical Angina' else (2 if cp == 'Non-Anginal Pain' else 3))
+        age = st.slider('Age', 1, 100, 25)
 
         fbs_options = ['False', 'True']
         fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', options=fbs_options)
@@ -100,7 +100,7 @@ elif (selected == 'Heart Disease Prediction'):
         exng = 0 if exng == 'No' else 1
     
         caa_options = ['0', '1', '2', '3', '4']
-        caa = st.selectbox('Number of Major Vessels Colored by Fluoroscopy', options=caa_options)
+        caa = st.selectbox('Major Vessels Colored by Fluoroscopy', options=caa_options)
 
         
     # code for Prediction
