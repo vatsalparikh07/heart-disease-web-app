@@ -63,10 +63,8 @@ elif (selected == 'Heart Disease Prediction'):
         cp = st.selectbox('Chest Pain type', options=cp_options)
         cp = 0 if cp == 'Typical Angina' else (1 if cp == 'Atypical Angina' else (2 if cp == 'Non-Anginal Pain' else 3))
 
-        sex_options = ['Male', 'Female']
-        sex = st.selectbox('Sex', options=sex_options)
-        sex = 0 if sex == 'Female' else 1
-
+        chol = st.text_input('Serum Cholesterol in mg/dl')
+        
         oldpeak = st.number_input('ST depression induced by exercise', value=0.0, step=0.1)
 
         thal_options = ['Normal', 'Fixed Defect', 'Reversible Defect']
@@ -78,8 +76,10 @@ elif (selected == 'Heart Disease Prediction'):
 
         trtbps = st.slider('Resting Blood Pressure', 80, 200, 120)
         
-        chol = st.text_input('Serum Cholesterol in mg/dl')
-
+        sex_options = ['Male', 'Female']
+        sex = st.selectbox('Sex', options=sex_options)
+        sex = 0 if sex == 'Female' else 1
+              
         restecg_options = [0, 1, 2]
         restecg_labels = ['Normal', 'Abnormality in ST-T wave', 'Showing probable or definite left ventricular hypertrophy']
         restecg = st.selectbox('Resting Electrocardiographic Results', options=restecg_options, format_func=lambda x: restecg_labels[x])
