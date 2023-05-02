@@ -147,7 +147,6 @@ elif (selected == 'Attribute Description'):
 
 elif (selected == 'Analysis and Visualization'):
 
-if selected == 'Analysis and Visualization':
     st.header("Data Exploration")
 
     # Print first five rows
