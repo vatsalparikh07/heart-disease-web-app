@@ -264,6 +264,64 @@ if selected == 'Analysis and Visualization':
     sns.distplot(df[df['output'] == 0]["thalachh"], color='green',kde=True,) 
     sns.distplot(df[df['output'] == 1]["thalachh"], color='red',kde=True)
     st.pyplot()
+    
+elif(selected == "Findings and Outcomes"):
+
+    st.title('Factors responsible for the presence of a heart disease')
+
+    # Section 1 - Age
+    st.header('1. Age')
+    st.write('Age is a critical attribute when it comes to predicting the risk of heart disease. In this dataset, it was observed that the age of patients ranges from 29 to 77 years, with a mean age of approximately 55 years. We can see from the distribution plot below that the majority of patients in this dataset are in their fifties, followed by their sixties. This indicates that the risk of heart disease increases with age, as it is commonly known that the prevalence of heart disease is higher in older individuals.')
+    fig1 = plt.figure()
+    sns.histplot(data=df, x='age', bins=10, kde=True)
+    st.pyplot(fig1)
+
+    # Section 2 - Sex
+    st.header('2. Sex')
+    st.write('Sex is an important predictor variable for heart disease. The dataset we used had a higher proportion of males than females, with 68.3% of the total samples being male and 31.7% being female. Out of the total 303 samples, 165 (54.5%) were diagnosed with heart disease, out of which 114 were male (69.1%) and 51 were female (30.9%). On the other hand, out of the 138 samples without heart disease, 24 were male (17.4%) and 114 were female (82.6%).')
+    fig2 = plt.figure()
+    sns.countplot(data=df, x='sex', hue='output')
+    st.pyplot(fig2)
+    st.write('It was found that males tended to have higher levels of cholesterol, and were more likely to smoke and have higher blood pressure than females.')
+
+    # Section 3 - Resting Blood Pressure
+    st.header('3. Resting Blood Pressure')
+    st.write('Resting blood pressure is measured in mmHg, and ranges from 80 to 200 mmHg. To analyze the relationship between resting blood pressure and the presence of heart disease, a plot was drawn showing the distribution of resting blood pressure for individuals with and without heart disease. From the plot, it is clear that there is a weak positive correlation between resting blood pressure and heart disease. Thus, resting blood pressure alone may not be a strong predictor of heart disease.')
+    fig3 = plt.figure()
+    sns.kdeplot(data=df, x='trtbps', hue='output')
+    st.pyplot(fig3)
+
+    # Calculate the percentage of patients with heart disease for each chest pain type
+    angina = df.groupby("cp")["output"].mean()
+    angina = angina.sort_values(ascending=False)
+    
+    # Calculate the average cholesterol level for patients with and without heart disease
+    chol_hd = df[df["output"] == 1]["chol"].mean()
+    chol_no_hd = df[df["output"] == 0]["chol"].mean()
+
+    # Create a bar plot for chest pain types
+    st.header('4. Chest Pain type')
+    st.write('Of the 303 patients in the dataset, 143 (47.19%) reported typical angina, 87 (28.71%) reported atypical angina, 83 (27.39%) reported non-anginal pain, and 23 (7.59%) were asymptomatic. Patients with atypical angina had a higher prevalence of heart disease compared to patients with other types of chest pain. Specifically, 82.5% of patients with atypical angina had heart disease, compared to 77.2% of patients with non-anginal pain, 66.3% of asymptomatic patients and 27.71% of patients with typical anginal pain.')
+    fig1, ax1 = plt.subplots()
+    sns.barplot(x=angina.index, y=angina.values, palette="rocket")
+    plt.xlabel("Chest Pain Type")
+    plt.ylabel("Percentage with Heart Disease")
+    plt.title("Prevalence of Heart Disease by Chest Pain Type")
+    st.pyplot(fig1)
+
+    # Create a box plot for cholesterol levels
+    st.header('5. Cholesterol Levels')
+    fig2, ax2 = plt.subplots()
+    sns.boxplot(x="output", y="chol", data=df, palette="rocket")
+    plt.xlabel("Heart Disease")
+    plt.ylabel("Cholesterol Level")
+    plt.title("Cholesterol Levels by Heart Disease Status")
+    st.pyplot(fig2)
+
+    # Show the average cholesterol levels for patients with and without heart disease
+    st.write('Higher cholesterol levels are associated with a higher risk of heart disease. Among the patients inthe dataset, the average cholesterol level was higher among those with heart disease compared to those without.')
+    st.write("Average Cholesterol Level for Patients with Heart Disease: {:.2f}".format(chol_hd))
+    st.write("Average Cholesterol Level for Patients without Heart Disease: {:.2f}".format(chol_no_hd))
 
     
 
