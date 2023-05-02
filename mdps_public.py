@@ -1,7 +1,9 @@
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
-
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # loading the saved models
 
@@ -13,6 +15,8 @@ with st.sidebar:
                           ['About the Project', 'Heart Disease Prediction',  'Attribute Description', 'Analysis and Visualization', 'Findings and Outcomes'],
                           icons=['heart'],
                           default_index=0)
+    
+df = pd.read_csv('data.csv')
 
 if (selected == 'About the Project'):
 
@@ -143,7 +147,137 @@ elif (selected == 'Attribute Description'):
 
 elif (selected == 'Analysis and Visualization'):
 
-    st.title('Data Visualization')
+if selected == 'Analysis and Visualization':
+    st.header("Data Exploration")
+
+    # Print first five rows
+    st.write("### Printing first five rows:")
+    st.write(df.head())
+
+    # Statistical data
+    st.write("### Checking Statistical Data:")
+    st.write(df.describe())
+
+    # Check for datatypes and attributes
+    st.write("### Checking for datatypes and attributes:")
+    st.write(df.info())
+
+    # Check for null values
+    st.write("### Checking for null values:")
+    st.write(df.isnull().sum())
+
+    # Print the columns
+    st.write("### Printing the columns:")
+    st.write(df.columns)
+
+    # Check for duplicate rows
+    st.write("### Checking for duplicate rows:")
+    st.write(df.duplicated().sum())
+
+    # Removing duplicates
+    df.drop_duplicates(inplace=True)
+
+    # Check the shape
+    st.write("### Checking the shape:")
+    st.write(f"Number of rows: {df.shape[0]}, Number of columns: {df.shape[1]}")
+
+    # Computing the correlation matrix
+    st.write("### Computing the correlation matrix:")
+    st.write(df.corr())
+
+    # Data Visualization
+    st.header("Data Visualization")
+    
+    # Breakdown of Gender
+    st.write("### Breakdown of Gender:")
+    x = (df.sex.value_counts())
+    st.write(f"Number of people having gender as Female are {x[0]} and Number of people having gender as Male are {x[1]}")
+    p = sns.countplot(data=df, x="sex")
+    plt.show()
+    st.pyplot(p.figure)
+
+    # Breakdown for chest pain
+    st.write("### Breakdown for Chest Pain:")
+    x = (df.cp.value_counts())
+    st.write("The frequency of each type of chest pain:")
+    st.write(f"Typical Angina - {x[0]}")
+    st.write(f"Atypical Angina - {x[1]}")
+    st.write(f"Non-Anginal pain - {x[2]}")
+    st.write(f"Asymptomatic - {x[3]}")
+    p = sns.countplot(data=df, x="cp")
+    plt.show()
+    st.pyplot(p.figure)
+
+    # Breakdown for Fasting blood sugar
+    st.write("### Breakdown for Fasting Blood Sugar:")
+    x = (df.fbs.value_counts())
+    st.write(f"Cases where fasting blood sugar < 120 mg/dl: {x[0]}")
+    st.write(f"Cases where fasting blood sugar > 120 mg/dl: {x[1]}")
+    p = sns.countplot(data=df, x="fbs")
+    plt.show()
+    st.pyplot(p.figure)
+
+    # Breakdown of ECG
+    st.write("### Breakdown of ECG Results:")
+    x = (df.restecg.value_counts())
+    st.write("Resting ECG results:")
+    st.write(x)
+    p = sns.countplot(data=df, x="restecg")
+    plt.show()
+    st.pyplot(p.figure)
+
+    st.write("### Exercise Induced Angina Breakdown")
+    x = df.exng.value_counts()
+    st.write(f"Number of Exercise induced angina:")
+    st.write(x)
+    p = sns.countplot(data=df, x="exng")
+    plt.show()
+    st.pyplot(p.figure)
+    
+    st.write("### Thalium Stress Test Breakdown")
+    x = df.thall.value_counts()
+    st.write("Thall Count is min for type 0 and max for type 2:\n", x)
+    p = sns.countplot(data=df, x="thall")
+    st.pyplot(p.figure)
+    
+    st.write("### Density distribution for Age")
+    p = sns.displot(df.age, color="red", label="Age", kde= True)
+    st.pyplot(p)
+    st.write("Density distribution is highest for age group 55 to 60")
+    
+    st.write("### Density Distribution for Resting Blood Pressure")
+    p = sns.displot(df.trtbps, color="green", label="Resting Blood Pressure", kde= True)
+    st.pyplot(p)
+    st.write("Trtbs has the highest count around 130")
+    
+    st.write("### Heart Attack Vs Age")
+    plt.figure(figsize=(10,10))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.distplot(df[df['output'] == 0]["age"], color='green',kde=True,) 
+    sns.distplot(df[df['output'] == 1]["age"], color='red',kde=True)
+    st.pyplot()
+
+    st.write("### Cholesterol versus chances of heart disease")
+    plt.figure(figsize=(10,10))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.distplot(df[df['output'] == 0]["chol"], color='green',kde=True,) 
+    sns.distplot(df[df['output'] == 1]["chol"], color='red',kde=True)
+    st.pyplot()
+
+    st.write("### Resting blood pressure vs chances of heart disease")
+    plt.figure(figsize=(10,10))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.distplot(df[df['output'] == 0]["trtbps"], color='green',kde=True,) 
+    sns.distplot(df[df['output'] == 1]["trtbps"], color='red',kde=True)
+    st.pyplot()
+
+    st.write("### Heart Rate versus chances of heart disease")
+    plt.figure(figsize=(10,10))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.distplot(df[df['output'] == 0]["thalachh"], color='green',kde=True,) 
+    sns.distplot(df[df['output'] == 1]["thalachh"], color='red',kde=True)
+    st.pyplot()
+
 
 
 
