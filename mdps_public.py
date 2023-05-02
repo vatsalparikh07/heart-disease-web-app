@@ -1,21 +1,20 @@
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
+from PIL import Image
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
 
 # loading the saved models
-
-heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open("heart_disease_model.sav", 'rb'))
 
 # sidebar for navigation
 with st.sidebar:
     selected = option_menu('Main Menu',
-                          ['About the Project', 'Heart Disease Prediction',  'Attribute Description', 'Analysis and Visualization', 'Findings and Outcomes'],
+                          ['About the Project', 'Heart Disease Prediction', 'Attribute Description', 'Analysis and Visualization', 'Findings and Outcomes'],
                           icons=['heart'],
                           default_index=0)
-    
 df = pd.read_csv('data.csv')
 
 if (selected == 'About the Project'):
@@ -26,30 +25,21 @@ if (selected == 'About the Project'):
     Cardiovascular diseases (CVDs) are the leading cause of death globally, taking an estimated 17.5 million lives each year, accounting for nearly 31 percent of global deaths. It is important to identify those at the highest risks of CVDs to ensure appropriate treatment and preventing premature deaths.
     
     This project is a web application that predicts the presence of heart disease in a patient based on various medical factors such as age, blood pressure, cholesterol level, etc. The project uses machine learning algorithms to analyze the data and make predictions.
-
     ### Data
-
     The data used in this project is the [Heart Disease UCI dataset](https://archive.ics.uci.edu/ml/datasets/Heart+Disease) from the UCI Machine Learning Repository. The dataset contains 303 samples with 14 features, including age, sex, chest pain type, resting blood pressure, serum cholesterol, fasting blood sugar level, resting electrocardiographic results, maximum heart rate achieved, exercise-induced angina, ST depression induced by exercise relative to rest, slope of the peak exercise ST segment, number of major vessels colored by fluoroscopy, and thalassemia.
     
     ### Machine Learning Algorithm
-
     The machine learning algorithm used for this project is [Support Vector Machine](https://scikit-learn.org/stable/modules/svm.html). The model is able to predict whether a patient has heart disease with an accuracy of 93.44%.
-
     ### Libraries Used
-
     This project uses the following libraries:
-
     * Pandas
     * NumPy
     * Scikit-learn
     * Matplotlib
     * Seaborn
     * Streamlit
-
     ### About the Developer
-
     This project was developed by Vatsal Parikh. You can find more of my projects on [GitHub](https://github.com/vatsalparikh07).
-
     """)
 
 # Heart Disease Prediction Page
@@ -145,8 +135,7 @@ elif (selected == 'Attribute Description'):
 
     attribute_description()
 
-elif (selected == 'Analysis and Visualization'):
-
+if selected == 'Analysis and Visualization':
     st.header("Data Exploration")
 
     # Print first five rows
@@ -277,18 +266,5 @@ elif (selected == 'Analysis and Visualization'):
     sns.distplot(df[df['output'] == 1]["thalachh"], color='red',kde=True)
     st.pyplot()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
