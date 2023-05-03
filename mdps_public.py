@@ -321,7 +321,6 @@ elif(selected == "Findings and Outcomes"):
     # Show the average cholesterol levels for patients with and without heart disease
     st.write('Higher cholesterol levels are associated with a higher risk of heart disease. Among the patients inthe dataset, the average cholesterol level was higher among those with heart disease compared to those without.')
     st.write("Average Cholesterol Level for Patients with Heart Disease: {:.2f}".format(chol_hd))
-    st.write("Average Cholesterol Level for Patients without Heart Disease: {:.2f}".format(chol_no_hd))
 
     
 
