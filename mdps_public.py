@@ -11,9 +11,10 @@ heart_disease_model = pickle.load(open("heart_disease_model.sav", 'rb'))
 # sidebar for navigation
 with st.sidebar:
     selected = option_menu('Main Menu',
-                          ['About the Project', 'Heart Disease Prediction', 'Attribute Description'],
+                          ['About the Project', 'Heart Disease Prediction', 'Attribute Description', 'Analysis and Visualization', 'Findings and Outcomes'],
                           icons=['heart'],
                           default_index=0)
+    
 df = pd.read_csv('data.csv')
 
 if (selected == 'About the Project'):
