@@ -1,6 +1,4 @@
 # Heart Disease Prediction System
-
-### [Project Website](https://vatsalparikh07-heart-disease-web-app-mdps-public-udespa.streamlit.app/)
   
 ![Heart Disease](https://github.com/vatsalparikh07/heart-disease-web-app/assets/65659649/b17fd23a-22d5-4553-9de4-f7849cb8a32e)
 
